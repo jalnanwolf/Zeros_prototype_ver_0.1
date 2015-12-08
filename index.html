@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zeros ver 0.1</title>
+
+    <style>
+        #main_container
+        {
+            background-color: lightgray;
+        }
+        #contents{
+            position: absolute;
+        }
+        #addBtn{
+            position: absolute; top:-2%; left:1%; color:WHITE;
+        }
+        #contents
+        {
+            width: 1280px; height: 720px;
+        }
+        #search
+        {
+            position: absolute; top:2%; left:3%; display: none;
+
+        }
+        #skelHandler
+        {
+            position: absolute; left: 1%; top: 5%; background-color: WHITE;
+        }
+        #showData
+        {
+            position: absolute; left:50%; top:50%; margin-left: -400px; margin-top: -200px; background-color: WHITE; overflow: scroll; width:800px; height:400px;
+            display: none;
+        }
+        #timeLine
+        {
+            position: absolute; bottom: 0%; left: 0%; background-color: gray; width: 1530px; height: 220px;
+        }
+        #menuBtn
+        {
+            position: absolute;
+            bottom: 1%; right:1%;
+        }
+        #menuBtn.span{
+            margin: 5px;
+        }
+        #sceneList
+        {
+            width: 240px; margin: 5px; height:710px; overflow: scroll;
+        }
+        #contentsContainer {
+            position: absolute;
+            width: 1530px;
+            height: 940px;
+            background-color: dimgray;
+        }
+        #sceneContainer
+        {
+            position: absolute;
+            right: 0%; width:250px;
+            height: 720px;
+        }
+        #playBtn
+        {
+            position: absolute;
+            right: 2%; top: 2%;
+            cursor: pointer;
+        }
+        #titleBar
+        {
+            padding-top: 2px; padding-right: 2px; padding-left: 20px; background-color: lightgrey;
+        }
+        #poseThumbnail
+        {
+            position: absolute;
+            top: 10%; left: 30%; display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="main_container">
+        <div id="contentsContainer">
+        <div id="contents">
+            <div id="search">
+                <form id="ObjectSearch">
+                    <input style="width:800px;" type="search" id="searchText" onkeyup="{ObjectSearch(this.value);return false}" placeholder="Search Text Input Here"/>
+                </form>
+                <div id="resultList">
+                    <div id="result"></div>
+                </div>
+            </div>
+            <div id="addBtn"><h1>+</h1></div>
+            <div id="playBtn"><input type="button" value="PLAY" onclick="animationPlay();"></div>
+            <div id="poseThumbnail"><img src="thumbnail/pose1.png" height="150px" onclick="poser('a');" style="margin: 5px"><img src="thumbnail/pose2.png" height="150px" onclick="poser('b');" style="margin: 5px"><img src="thumbnail/pose3.png" height="150px" onclick="poser('c');" style="margin: 5px"><img src="thumbnail/pose4.png" height="150px" onclick="poser('d');" style="margin: 5px"></div>
+            <div id="menuBtn"><input type="button" value="reset position" onclick="javascript:resetPosition();"><input type="button" value="reset rotation" onclick="javascript:resetPose();"><input type="button" value="Bone Controller" onclick="javascript:makeSkeletonHandler();"><input type="button" value="Pose Mode" onclick="$('#poseThumbnail').toggle();"><input type="button" value="Pose Save" onclick="addpose();"><input type="button" value="New Scene"><input type="button" value="Export"></div>
+            <div id="skelHandler"></div>
+            <div id="showData"></div>
+
+
+        </div>
+            <div id="sceneContainer"><div id="sceneList"></div></div>
+            <div id="timeLine"><div id="titleBar">TimeLine</div></div>
+        </div>
+
+    </div>
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/three.min.js"></script>
+    <script src="js/detector.js"></script>
+    <script src="js/loaders/ColladaLoader.js"></script>
+    <Script src="js/Animation.js"></Script>
+    <script src="js/AnimationHandler.js"></script>
+    <script src="js/KeyFrameAnimation.js"></script>
+    <script src="js/controllers/EditControls.js"></script>
+    <script src="js/controllers/TransformControls.js"></script>
+    <script src="js/fns.js"></script>
+    <script src="js/timeLine.js"></script>
+    <script src="js/bone.js"></script>
+
+    <script src="js/zeros_proto.js"></script>
+
+
+    <script>
+        $('#addBtn').click(function(){
+            $('#search').toggle();
+        });
+    </script>
+</body>
+</html>
